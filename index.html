@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savor — Modern Mediterranean Dining</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #faf8f5; color: #2c1810; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* Nav */
+        nav { position: fixed; top: 0; width: 100%; background: rgba(250,248,245,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(44,24,16,0.08); z-index: 1000; }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; max-width: 1200px; margin: 0 auto; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: #2c1810; letter-spacing: -0.5px; }
+        .nav-links { display: flex; gap: 36px; list-style: none; }
+        .nav-links a { color: #6b5b53; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: #2c1810; }
+        .nav-cta { background: #c75b39; color: #fff; border: none; padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+        .nav-cta:hover { background: #b04d2e; transform: translateY(-1px); }
+
+        /* Hero */
+        .hero { padding: 160px 24px 100px; text-align: center; background: linear-gradient(180deg, #faf8f5 0%, #f5f0ea 100%); }
+        .hero-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: #c75b39; font-weight: 600; margin-bottom: 20px; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(42px, 6vw, 72px); font-weight: 700; line-height: 1.1; margin-bottom: 24px; color: #2c1810; }
+        .hero p { font-size: 18px; color: #6b5b53; max-width: 520px; margin: 0 auto 36px; line-height: 1.7; }
+        .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .btn-primary { background: #c75b39; color: #fff; padding: 16px 32px; border-radius: 10px; font-weight: 600; font-size: 16px; text-decoration: none; display: inline-block; transition: all 0.2s; border: none; cursor: pointer; }
+        .btn-primary:hover { background: #b04d2e; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(199,91,57,0.25); }
+        .btn-secondary { background: transparent; color: #2c1810; padding: 16px 32px; border-radius: 10px; font-weight: 600; font-size: 16px; text-decoration: none; display: inline-block; border: 1px solid rgba(44,24,16,0.15); transition: all 0.2s; }
+        .btn-secondary:hover { background: rgba(44,24,16,0.04); }
+
+        /* Hero Visual */
+        .hero-visual { max-width: 1000px; margin: 60px auto 0; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+        .hero-img { border-radius: 16px; overflow: hidden; aspect-ratio: 3/4; }
+        .hero-img img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-img:nth-child(2) { aspect-ratio: 1; align-self: center; }
+
+        /* About */
+        .about { padding: 100px 24px; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1000px; margin: 0 auto; }
+        .about-text h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 42px); font-weight: 700; margin-bottom: 20px; color: #2c1810; }
+        .about-text p { color: #6b5b53; font-size: 17px; line-height: 1.8; margin-bottom: 20px; }
+        .about-stats { display: flex; gap: 40px; margin-top: 32px; }
+        .about-stat h4 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #c75b39; }
+        .about-stat span { font-size: 13px; color: #6b5b53; text-transform: uppercase; letter-spacing: 0.05em; }
+        .about-visual { border-radius: 20px; overflow: hidden; aspect-ratio: 1; }
+        .about-visual img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Menu */
+        .menu { padding: 100px 24px; background: #f5f0ea; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 42px); font-weight: 700; margin-bottom: 12px; }
+        .section-header p { color: #6b5b53; font-size: 17px; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; max-width: 900px; margin: 0 auto; }
+        .menu-item { background: #fff; border-radius: 16px; overflow: hidden; border: 1px solid rgba(44,24,16,0.06); transition: all 0.2s; }
+        .menu-item:hover { box-shadow: 0 10px 40px rgba(0,0,0,0.06); transform: translateY(-4px); }
+        .menu-img { width: 100%; height: 200px; overflow: hidden; }
+        .menu-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .menu-item:hover .menu-img img { transform: scale(1.05); }
+        .menu-content { padding: 28px; }
+        .menu-item-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+        .menu-item h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; }
+        .menu-item .price { font-size: 18px; font-weight: 700; color: #c75b39; }
+        .menu-item p { color: #6b5b53; font-size: 14px; line-height: 1.6; }
+        .menu-tag { display: inline-block; padding: 4px 10px; background: #faf8f5; border-radius: 6px; font-size: 11px; color: #c75b39; font-weight: 600; margin-top: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        /* Gallery */
+        .gallery { padding: 100px 24px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 48px; }
+        .gallery-item { aspect-ratio: 1; border-radius: 16px; overflow: hidden; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-item.wide { grid-column: span 2; aspect-ratio: 2/1; }
+        .gallery-item.tall { grid-row: span 2; aspect-ratio: 1/2; }
+
+        /* Testimonials */
+        .testimonials { padding: 100px 24px; background: #f5f0ea; }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; max-width: 900px; margin: 48px auto 0; }
+        .testimonial { background: #fff; border-radius: 20px; padding: 40px; }
+        .stars { color: #d4a574; margin-bottom: 20px; font-size: 18px; letter-spacing: 2px; }
+        .testimonial p { color: #4a3f39; font-size: 16px; line-height: 1.7; margin-bottom: 24px; font-style: italic; }
+        .testimonial-author { display: flex; align-items: center; gap: 16px; }
+        .author-avatar { width: 48px; height: 48px; border-radius: 50%; background: #c75b39; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 600; font-size: 16px; }
+        .author-info h4 { font-size: 15px; font-weight: 600; color: #2c1810; }
+        .author-info span { font-size: 13px; color: #6b5b53; }
+
+        /* CTA */
+        .cta { padding: 100px 24px; text-align: center; }
+        .cta-box { max-width: 700px; margin: 0 auto; background: #2c1810; border-radius: 24px; padding: 64px 40px; color: #fff; }
+        .cta-box h2 { font-family: 'Playfair Display', serif; font-size: clamp(24px, 3vw, 36px); font-weight: 700; margin-bottom: 16px; }
+        .cta-box p { color: rgba(255,255,255,0.7); font-size: 17px; margin-bottom: 32px; }
+        .cta-box .btn-primary { background: #c75b39; }
+        .cta-box .btn-primary:hover { background: #d66a47; }
+
+        /* Footer */
+        footer { padding: 48px 24px; text-align: center; color: #9e918a; font-size: 14px; border-top: 1px solid rgba(44,24,16,0.08); }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero { padding: 120px 24px 60px; }
+            .hero-visual { grid-template-columns: 1fr; }
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-item.wide { grid-column: span 2; }
+            .gallery-item.tall { grid-row: span 1; aspect-ratio: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-inner">
+            <div class="logo">Savor</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+            </ul>
+            <button class="nav-cta">Book a Table</button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-label">Tunisian Cuisine, Reimagined</div>
+            <h1>Where tradition<br>meets modern taste</h1>
+            <p>An intimate dining experience celebrating the rich flavors of the Mediterranean, crafted with locally sourced ingredients.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn-primary">Reserve Now</a>
+                <a href="#menu" class="btn-secondary">View Menu</a>
+            </div>
+        </div>
+        <div class="hero-visual container">
+            <div class="hero-img">
+                <img src="https://www.francoislambert.one/cdn/shop/articles/brick_a_l_oeuf.png?v=1719250465&width=1100" alt="Brik a l'Oeuf">
+            </div>
+            <div class="hero-img">
+                <img src="https://carthagemagazine.com/wp-content/uploads/2023/09/Tunisian-Mint-Tea-1.jpg" alt="Tunisian Mint Tea">
+            </div>
+            <div class="hero-img">
+                <img src="https://static01.nyt.com/images/2014/06/04/dining/Lamb-Tagine/Lamb-Tagine-superJumbo.jpg" alt="Lamb Tagine">
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2>Rooted in heritage, crafted with passion</h2>
+                    <p>Founded in 2019, Savor brings the warmth of Tunisian hospitality to a contemporary setting. Every dish tells a story of generations-old recipes refined through modern technique.</p>
+                    <p>Our chefs source ingredients from local farms and spice markets, ensuring authenticity in every bite. From our signature couscous to our house-made harissa, we honor tradition while embracing innovation.</p>
+                    <div class="about-stats">
+                        <div class="about-stat">
+                            <h4>12</h4>
+                            <span>Signature Dishes</span>
+                        </div>
+                        <div class="about-stat">
+                            <h4>4.9</h4>
+                            <span>Guest Rating</span>
+                        </div>
+                        <div class="about-stat">
+                            <h4>7</h4>
+                            <span>Years of Service</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <img src="https://thumbs.dreamstime.com/z/mediterranean-restaurant-design-lanterns-tables-seating-plants-featuring-elegant-interior-decor-relax-bright-372334499.jpg" alt="Restaurant Interior">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu" id="menu">
+        <div class="container">
+            <div class="section-header">
+                <h2>Seasonal Menu</h2>
+                <p>Carefully curated dishes that celebrate the best of each season.</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-img">
+                        <img src="https://www.francoislambert.one/cdn/shop/articles/brick_a_l_oeuf.png?v=1719250465&width=1100" alt="Brik a l'Oeuf">
+                    </div>
+                    <div class="menu-content">
+                        <div class="menu-item-header">
+                            <h3>Brik a l'Oeuf</h3>
+                            <span class="price">$14</span>
+                        </div>
+                        <p>Crispy pastry filled with farm egg, tuna, and capers. Served with preserved lemon and harissa.</p>
+                        <span class="menu-tag">Starter</span>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-img">
+                        <img src="https://static01.nyt.com/images/2014/06/04/dining/Lamb-Tagine/Lamb-Tagine-superJumbo.jpg" alt="Lamb Tagine">
+                    </div>
+                    <div class="menu-content">
+                        <div class="menu-item-header">
+                            <h3>Lamb Tagine</h3>
+                            <span class="price">$34</span>
+                        </div>
+                        <p>Slow-braised lamb shoulder with dried apricots, toasted almonds, and aromatic ras el hanout spice blend.</p>
+                        <span class="menu-tag">Main</span>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-img">
+                        <img src="https://www.scienceandcrumbs.com/wp-content/uploads/2021/09/tunisian-couscous-02.jpg" alt="Seafood Couscous">
+                    </div>
+                    <div class="menu-content">
+                        <div class="menu-item-header">
+                            <h3>Seafood Couscous</h3>
+                            <span class="price">$38</span>
+                        </div>
+                        <p>Hand-rolled couscous with grilled sea bass, jumbo shrimp, and saffron-infused shellfish broth.</p>
+                        <span class="menu-tag">Main</span>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-img">
+                        <img src="https://carthagemagazine.com/wp-content/uploads/2023/12/Tunisian-Makrout.jpeg" alt="Makroudh">
+                    </div>
+                    <div class="menu-content">
+                        <div class="menu-item-header">
+                            <h3>Makroudh</h3>
+                            <span class="price">$11</span>
+                        </div>
+                        <p>Semolina pastry filled with Deglet Noor dates, fried and soaked in orange blossom syrup with sesame.</p>
+                        <span class="menu-tag">Dessert</span>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-img">
+                        <img src="https://www.tamingtwins.com/wp-content/uploads/2025/08/Shakshuka-7.jpg" alt="Shakshuka">
+                    </div>
+                    <div class="menu-content">
+                        <div class="menu-item-header">
+                            <h3>Shakshuka</h3>
+                            <span class="price">$19</span>
+                        </div>
+                        <p>Farm eggs poached in a rich tomato and roasted pepper stew, served with warm khobz and labneh.</p>
+                        <span class="menu-tag">Brunch</span>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-img">
+                        <img src="https://carthagemagazine.com/wp-content/uploads/2023/09/Tunisian-Mint-Tea.jpg" alt="Mint Tea">
+                    </div>
+                    <div class="menu-content">
+                        <div class="menu-item-header">
+                            <h3>Mint Tea Service</h3>
+                            <span class="price">$9</span>
+                        </div>
+                        <p>Traditional Tunisian mint tea poured from height, served with pine nut cookies and dates.</p>
+                        <span class="menu-tag">Beverage</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Experience</h2>
+                <p>Every detail, from plate to ambiance, designed to transport you.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item wide">
+                    <img src="https://thumbs.dreamstime.com/z/mediterranean-restaurant-design-lanterns-tables-seating-plants-featuring-elegant-interior-decor-relax-bright-372334499.jpg" alt="Restaurant Interior">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://www.francoislambert.one/cdn/shop/articles/brick_a_l_oeuf.png?v=1719250465&width=1100" alt="Brik">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://carthagemagazine.com/wp-content/uploads/2023/09/Tunisian-Mint-Tea-1.jpg" alt="Tea Service">
+                </div>
+                <div class="gallery-item tall">
+                    <img src="https://www.scienceandcrumbs.com/wp-content/uploads/2021/09/tunisian-couscous-02.jpg" alt="Couscous">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://carthagemagazine.com/wp-content/uploads/2023/12/Tunisian-Makrout.jpeg" alt="Makroudh">
+                </div>
+                <div class="gallery-item wide">
+                    <img src="https://www.tamingtwins.com/wp-content/uploads/2025/08/Shakshuka-7.jpg" alt="Shakshuka">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>Guest Stories</h2>
+                <p>What our visitors say about their evening at Savor.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p>"The most authentic Tunisian food I have had outside of Tunis. The lamb tagine melted in my mouth."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MK</div>
+                        <div class="author-info">
+                            <h4>Marie K.</h4>
+                            <span>Paris, France</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p>"We celebrated our anniversary here. The ambiance, the service, the flavors — absolutely perfect."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JT</div>
+                        <div class="author-info">
+                            <h4>James & Tara</h4>
+                            <span>London, UK</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p>"Savor reminded me of my grandmother's cooking. The makroudh alone is worth the trip."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AN</div>
+                        <div class="author-info">
+                            <h4>Ahmed N.</h4>
+                            <span>Montreal, Canada</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Join us this evening</h2>
+                <p>Reservations recommended. Walk-ins welcome at the bar.</p>
+                <a href="#" class="btn-primary">Book Your Table</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Savor Restaurant. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
